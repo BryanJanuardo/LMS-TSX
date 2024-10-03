@@ -1,33 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+import axios from 'axios';
 import './App.css'
 
+interface Book {
+  title: string;
+  isbn: string;
+  pageCount: number;
+  publishedDate: Date;
+  thumbnailUrl: string;
+  shortDescription: string;
+  longDescription: string;
+  status: string;
+  authors: string[];
+  categories: string[];
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [books, setBooks] = useState<Book[]>([]); 
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get<Book[]>('http://localhost:5000/api/books');
+        setBooks(response.data);
+      } catch (error) {
+        console.error('Error fetching books:', error);
+      }
+    };
+    fetchBooks();
+  }, []);
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+          {books.map(book => (
+          <li>
+            <h2>{book.title}</h2>
+            <p><strong>ISBN:</strong> {book.isbn}</p>
+            <p><strong>Page Count:</strong> {book.pageCount}</p>
+            <p><strong>Published Date:</strong> {new Date(book.publishedDate).toDateString()}</p>
+            <img src={book.thumbnailUrl} alt={book.title} style={{ width: '100px' }} />
+            <p><strong>Short Description:</strong> {book.shortDescription}</p>
+            <p><strong>Short Description:</strong> {book.longDescription}</p>
+            <p><strong>Authors:</strong> {book.authors.join(', ')}</p>
+            <p><strong>Categories:</strong> {book.categories.join(', ')}</p>
+            <p><strong>Status:</strong> {book.status}</p>
+          </li>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
