@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-import './App.css'
+import CourseCard from './components/CourseCard';
+
 
 interface Book {
   _id: number;
@@ -33,52 +34,18 @@ function App() {
 
   return (
     <>
-      <div className="max-w-3xl mx-auto p-4">
-        <ul className="space-y-4">
-          {books.map((book) => (
-            <li
-              key={book.isbn}
-              className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow relative group"
-            >
-              <h2>{book._id}</h2>
-              <h2 className="text-2xl font-semibold text-gray-800">{book.title}</h2>
-              <p className="text-gray-600">
-                <strong>ISBN:</strong> {book.isbn}
-              </p>
-              <p className="text-gray-600">
-                <strong>Page Count:</strong> {book.pageCount}
-              </p>
-              <p className="text-gray-600">
-                <strong>Published Date:</strong> {new Date(book.publishedDate).toDateString()}
-              </p>
+      <nav className="bg-blue-600 p-4 w-full">
+          <div className="container mx-auto">
+              <h1 className="text-white text-lg font-semibold">My Course Navbar</h1>
+          </div>
+      </nav>
 
-              {/* Centering the Image */}
-              <div className="flex justify-center my-2">
-                <img
-                  src={book.thumbnailUrl}
-                  alt={book.title}
-                  className="w-24 h-32 object-cover rounded-md"
-                />
-              </div>
-
-              <p className="text-gray-600">
-                <strong>Short Description:</strong> {book.shortDescription}
-              </p>
-              <p className="text-gray-600">
-                <strong>Authors:</strong> {book.authors.join(', ')}
-              </p>
-              <p className="text-gray-600">
-                <strong>Categories:</strong> {book.categories.join(', ')}
-              </p>
-              <p className="text-gray-600">
-                <strong>Status:</strong> {book.status}
-              </p>
-            </li>
-          ))}
-        </ul>
+      <div className="bg-gray-100 w-full flex items-center justify-center">
+        <CourseCard/>
       </div>
     </>
   )
 }
 
 export default App
+  
