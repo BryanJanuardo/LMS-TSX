@@ -1,6 +1,4 @@
-//express
 var express = require('express');
-var app = express();
 var router = express.Router();
 
 // mongo
@@ -17,8 +15,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-// cors
-const cors = require('cors');
-app.use(cors());
+
 
 module.exports = router;

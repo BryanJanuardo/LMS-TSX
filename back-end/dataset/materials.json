@@ -1,0 +1,122 @@
+[
+    {
+        "_id": 1,
+        "MaterialName": "Steel Sheet",
+        "MaterialType": "Metal",
+        "MaterialPath": "/materials/steel_sheet.jpg"
+    },
+    {
+        "_id": 2,
+        "MaterialName": "Wood Plank",
+        "MaterialType": "Wood",
+        "MaterialPath": "/materials/wood_plank.jpg"
+    },
+    {
+        "_id": 3,
+        "MaterialName": "Plastic Granules",
+        "MaterialType": "Plastic",
+        "MaterialPath": "/materials/plastic_granules.jpg"
+    },
+    {
+        "_id": 4,
+        "MaterialName": "Copper Wire",
+        "MaterialType": "Metal",
+        "MaterialPath": "/materials/copper_wire.jpg"
+    },
+    {
+        "_id": 5,
+        "MaterialName": "Glass Sheet",
+        "MaterialType": "Glass",
+        "MaterialPath": "/materials/glass_sheet.jpg"
+    },
+    {
+        "_id": 6,
+        "MaterialName": "Aluminum Foil",
+        "MaterialType": "Metal",
+        "MaterialPath": "/materials/aluminum_foil.jpg"
+    },
+    {
+        "_id": 7,
+        "MaterialName": "PVC Pipe",
+        "MaterialType": "Plastic",
+        "MaterialPath": "/materials/pvc_pipe.jpg"
+    },
+    {
+        "_id": 8,
+        "MaterialName": "Concrete Mix",
+        "MaterialType": "Concrete",
+        "MaterialPath": "/materials/concrete_mix.jpg"
+    },
+    {
+        "_id": 9,
+        "MaterialName": "Ceramic Tile",
+        "MaterialType": "Ceramic",
+        "MaterialPath": "/materials/ceramic_tile.jpg"
+    },
+    {
+        "_id": 10,
+        "MaterialName": "Fabric Roll",
+        "MaterialType": "Textile",
+        "MaterialPath": "/materials/fabric_roll.jpg"
+    },
+    {
+        "_id": 11,
+        "MaterialName": "Fiberboard",
+        "MaterialType": "Wood",
+        "MaterialPath": "/materials/fiberboard.jpg"
+    },
+    {
+        "_id": 12,
+        "MaterialName": "Rubber Sheet",
+        "MaterialType": "Rubber",
+        "MaterialPath": "/materials/rubber_sheet.jpg"
+    },
+    {
+        "_id": 13,
+        "MaterialName": "Carbon Fiber",
+        "MaterialType": "Composite",
+        "MaterialPath": "/materials/carbon_fiber.jpg"
+    },
+    {
+        "_id": 14,
+        "MaterialName": "Lead Sheet",
+        "MaterialType": "Metal",
+        "MaterialPath": "/materials/lead_sheet.jpg"
+    },
+    {
+        "_id": 15,
+        "MaterialName": "Bamboo Stick",
+        "MaterialType": "Wood",
+        "MaterialPath": "/materials/bamboo_stick.jpg"
+    },
+    {
+        "_id": 16,
+        "MaterialName": "Acrylic Sheet",
+        "MaterialType": "Plastic",
+        "MaterialPath": "/materials/acrylic_sheet.jpg"
+    },
+    {
+        "_id": 17,
+        "MaterialName": "Stone Block",
+        "MaterialType": "Stone",
+        "MaterialPath": "/materials/stone_block.jpg"
+    },
+    {
+        "_id": 18,
+        "MaterialName": "Textile Fiber",
+        "MaterialType": "Textile",
+        "MaterialPath": "/materials/textile_fiber.jpg"
+    },
+    {
+        "_id": 19,
+        "MaterialName": "Nylon Rope",
+        "MaterialType": "Plastic",
+        "MaterialPath": "/materials/nylon_rope.jpg"
+    },
+    {
+        "_id": 20,
+        "MaterialName": "Paint Can",
+        "MaterialType": "Chemical",
+        "MaterialPath": "/materials/paint_can.jpg"
+    }
+]
