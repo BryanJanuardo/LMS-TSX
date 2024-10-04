@@ -5,6 +5,7 @@ var router = express.Router();
 
 // mongo
 const mongoose = require('mongoose');
+const connectDb = require('../config/connectDB');
 
 mongoose.connect('mongodb://localhost:27017/lms', {
   useNewUrlParser: true,
