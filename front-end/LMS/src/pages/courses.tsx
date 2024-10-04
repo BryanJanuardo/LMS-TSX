@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 
-const Courses = () => {
-  const [courses, setCourses] = useState([]); // To store the courses list
-  const [form, setForm] = useState({ CourseName: '', SKS: 0 }); // Form input state
-  const [editingCourseId, setEditingCourseId] = useState(null); // To track which course is being edited
+// Define the structure of a course
+interface Course {
+  _id: number;
+  CourseName: string;
+  SKS: number;
+}
+
+const Courses: React.FC = () => {
+  const [courses, setCourses] = useState<Course[]>([]); // To store the courses list
+  const [form, setForm] = useState<Pick<Course, 'CourseName' | 'SKS'>>({ CourseName: '', SKS: 0 }); // Form input state
+  const [editingCourseId, setEditingCourseId] = useState<number | null>(null); // To track which course is being edited
 
   // Read (GET) courses from API
   const fetchCourses = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/courses/');
+      const response = await axios.get<Course[]>('http://localhost:5000/api/courses/');
       setCourses(response.data); // Set the fetched data to courses
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -20,16 +27,16 @@ const Courses = () => {
     fetchCourses(); // Fetch courses when the component mounts
   }, []);
 
-  // Create (POST) a new course
-  const getNextId = () => {
+  // Create (POST) a new course with auto-increment _id
+  const getNextId = (): number => {
     if (courses.length === 0) return 1; // If no courses, start at 1
     const maxId = Math.max(...courses.map(course => course._id)); // Find the max _id
     return maxId + 1; // Increment by 1
   };
-  
-  const createCourse = async (course) => {
+
+  const createCourse = async (course: Omit<Course, '_id'>) => {
     try {
-      const newCourse = {
+      const newCourse: Course = {
         ...course,
         _id: getNextId(), // Auto-increment _id
       };
@@ -43,7 +50,7 @@ const Courses = () => {
   };
 
   // Update (PUT) an existing course
-  const updateCourse = async (id, updatedCourse) => {
+  const updateCourse = async (id: number, updatedCourse: Omit<Course, '_id'>) => {
     try {
       const response = await axios.put(`http://localhost:5000/api/courses/update/${id}`, updatedCourse);
       if (response.status === 200) {
@@ -56,7 +63,7 @@ const Courses = () => {
   };
 
   // Delete (DELETE) a course
-  const deleteCourse = async (id) => {
+  const deleteCourse = async (id: number) => {
     try {
       const response = await axios.delete(`http://localhost:5000/api/courses/delete/${id}`);
       if (response.status === 200) {
@@ -68,7 +75,7 @@ const Courses = () => {
   };
 
   // Handle form submit (Create or Update)
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (editingCourseId) {
       // If editing, update the course
@@ -81,22 +88,22 @@ const Courses = () => {
   };
 
   // Handle form input change
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prevForm) => ({
       ...prevForm,
-      [name]: value,
+      [name]: name === 'SKS' ? Number(value) : value, // Handle number for SKS
     }));
   };
 
   // Handle edit button click
-  const handleEditClick = (course) => {
+  const handleEditClick = (course: Course) => {
     setEditingCourseId(course._id); // Set the course ID for editing
     setForm({ CourseName: course.CourseName, SKS: course.SKS }); // Fill the form with the course data
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+    <div className="w-[60vw] mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
       <h1 className="text-3xl font-bold mb-6 text-center">Course Management</h1>
 
       {/* Course Form */}
