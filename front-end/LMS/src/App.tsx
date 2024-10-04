@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css'
 
 interface Book {
+  _id: number;
   title: string;
   isbn: string;
   pageCount: number;
@@ -32,21 +33,49 @@ function App() {
 
   return (
     <>
-      <div>
-          {books.map(book => (
-          <li>
-            <h2>{book.title}</h2>
-            <p><strong>ISBN:</strong> {book.isbn}</p>
-            <p><strong>Page Count:</strong> {book.pageCount}</p>
-            <p><strong>Published Date:</strong> {new Date(book.publishedDate).toDateString()}</p>
-            <img src={book.thumbnailUrl} alt={book.title} style={{ width: '100px' }} />
-            <p><strong>Short Description:</strong> {book.shortDescription}</p>
-            <p><strong>Short Description:</strong> {book.longDescription}</p>
-            <p><strong>Authors:</strong> {book.authors.join(', ')}</p>
-            <p><strong>Categories:</strong> {book.categories.join(', ')}</p>
-            <p><strong>Status:</strong> {book.status}</p>
-          </li>
-        ))}
+      <div className="max-w-3xl mx-auto p-4">
+        <ul className="space-y-4">
+          {books.map((book) => (
+            <li
+              key={book.isbn}
+              className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow relative group"
+            >
+              <h2>{book._id}</h2>
+              <h2 className="text-2xl font-semibold text-gray-800">{book.title}</h2>
+              <p className="text-gray-600">
+                <strong>ISBN:</strong> {book.isbn}
+              </p>
+              <p className="text-gray-600">
+                <strong>Page Count:</strong> {book.pageCount}
+              </p>
+              <p className="text-gray-600">
+                <strong>Published Date:</strong> {new Date(book.publishedDate).toDateString()}
+              </p>
+
+              {/* Centering the Image */}
+              <div className="flex justify-center my-2">
+                <img
+                  src={book.thumbnailUrl}
+                  alt={book.title}
+                  className="w-24 h-32 object-cover rounded-md"
+                />
+              </div>
+
+              <p className="text-gray-600">
+                <strong>Short Description:</strong> {book.shortDescription}
+              </p>
+              <p className="text-gray-600">
+                <strong>Authors:</strong> {book.authors.join(', ')}
+              </p>
+              <p className="text-gray-600">
+                <strong>Categories:</strong> {book.categories.join(', ')}
+              </p>
+              <p className="text-gray-600">
+                <strong>Status:</strong> {book.status}
+              </p>
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   )
