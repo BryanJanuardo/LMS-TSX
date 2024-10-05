@@ -1,5 +1,5 @@
 
-import CourseCard from './components/CourseCard.js'
+// import CourseCard from './components/CourseCard.js'
 import Courses  from './pages/courses.js'
 
 function App() {
