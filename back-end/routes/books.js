@@ -6,7 +6,7 @@ const Book = require('../models/book');
 router.get('/', async(req, res) => {
   try{
     const books = await Book.find();
-    res.json(books); 
+    res.json(books);
   } catch (error){
     res.status(500).json({ error: 'Failed fetch user '});
   }
@@ -14,4 +14,3 @@ router.get('/', async(req, res) => {
 
 module.exports = router;
 
-  
