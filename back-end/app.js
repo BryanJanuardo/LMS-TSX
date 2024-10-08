@@ -6,12 +6,13 @@ var logger = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var booksRouter = require('./routes/books');
 var materialRouter = require('./routes/materials');
+var courseRouter = require('./routes/courses');
+var taskRouter = require('./routes/tasks');
 
-mongoose.connect('mongodb://localhost:27017/lms', {
+mongoose.connect('mongodb://localhost:27017/LMS', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => console.log('MongoDB connected'))
@@ -30,10 +31,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/books', booksRouter);
 app.use('/api/materials', materialRouter);
+app.use('/api/courses', courseRouter);
+app.use('/api/tasks', taskRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
