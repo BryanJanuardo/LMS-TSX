@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 
-// Define the structure of a course
+
 interface Course {
   _id: number;
   CourseName: string;
@@ -27,7 +27,7 @@ const Courses: React.FC = () => {
     fetchCourses(); // Fetch courses when the component mounts
   }, []);
 
-  // Create (POST) a new course with auto-increment _id
+  // Create
   const getNextId = (): number => {
     if (courses.length === 0) return 1; // If no courses, start at 1
     const maxId = Math.max(...courses.map(course => course._id)); // Find the max _id
@@ -49,7 +49,7 @@ const Courses: React.FC = () => {
     }
   };
 
-  // Update (PUT) an existing course
+  // Update
   const updateCourse = async (id: number, updatedCourse: Omit<Course, '_id'>) => {
     try {
       const response = await axios.put(`http://localhost:5000/api/courses/update/${id}`, updatedCourse);
@@ -62,29 +62,29 @@ const Courses: React.FC = () => {
     }
   };
 
-  // Delete (DELETE) a course
+  // Delete
   const deleteCourse = async (id: number) => {
     try {
       const response = await axios.delete(`http://localhost:5000/api/courses/delete/${id}`);
       if (response.status === 200) {
-        fetchCourses(); // Refresh the course list
+        fetchCourses();
       }
     } catch (error) {
       console.error('Error deleting course:', error);
     }
   };
 
-  // Handle form submit (Create or Update)
+  // Handle form
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (editingCourseId) {
-      // If editing, update the course
+
       updateCourse(editingCourseId, form);
     } else {
-      // If not editing, create a new course
+
       createCourse(form);
     }
-    setForm({ CourseName: '', SKS: 0 }); // Reset form fields after submission
+    setForm({ CourseName: '', SKS: 0 });
   };
 
   // Handle form input change
@@ -92,21 +92,21 @@ const Courses: React.FC = () => {
     const { name, value } = e.target;
     setForm((prevForm) => ({
       ...prevForm,
-      [name]: name === 'SKS' ? Number(value) : value, // Handle number for SKS
+      [name]: name === 'SKS' ? Number(value) : value,
     }));
   };
 
   // Handle edit button click
   const handleEditClick = (course: Course) => {
-    setEditingCourseId(course._id); // Set the course ID for editing
-    setForm({ CourseName: course.CourseName, SKS: course.SKS }); // Fill the form with the course data
+    setEditingCourseId(course._id);
+    setForm({ CourseName: course.CourseName, SKS: course.SKS });
   };
 
   return (
     <div className="w-[60vw] mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
       <h1 className="text-3xl font-bold mb-6 text-center">Course Management</h1>
 
-      {/* Course Form */}
+
       <form onSubmit={handleSubmit} className="space-y-4 mb-8">
         <div className="flex flex-col">
           <label className="font-semibold mb-2">Course Name</label>
@@ -142,7 +142,7 @@ const Courses: React.FC = () => {
         </button>
       </form>
 
-      {/* List of Courses */}
+
       <ul className="space-y-4">
         {courses.map((course) => (
           <li key={course._id} className="flex justify-between items-center bg-gray-100 p-4 rounded-md">
