@@ -40,12 +40,17 @@ function App() {
           </div>
       </nav>
 
-      <div className="bg-gray-100 w-full flex items-center justify-center">
-        <CourseCard/>
-      </div>
+      <div className="bg-gray-100 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
+        <CourseCard />
+        <CourseCard />
+        <CourseCard />
+        <CourseCard />
+        <CourseCard />
+        <CourseCard />
+        <CourseCard />
+    </div>
     </>
   )
 }
 
 export default App
-  

@@ -25,11 +25,11 @@ router.post('/create', async(req, res) => {
 
 // update
 router.put('/update/:id', async(req, res) => {
-    try{
+    try{        
         const currMaterial = await Material.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!currMaterial) {
-            return res.status(404).json({ message: 'Material not found' });
         }
+        return res.status(200).json(currMaterial);
     } catch (error){
         res.status(500).json({ message: 'Error updating materials', error });
     }
