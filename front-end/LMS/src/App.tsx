@@ -1,6 +1,6 @@
 
-// import CourseCard from './components/CourseCard.js'
-import Courses  from './pages/courses.js'
+import CourseCard from './components/CourseCard.js'
+import Course  from './pages/courses.js'
 
 function App() {
   return (
@@ -13,13 +13,8 @@ function App() {
 
       <div className="bg-gray-100 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
         <CourseCard />
-        <CourseCard />
-        <CourseCard />
-        <CourseCard />
-        <CourseCard />
-        <CourseCard />
-        <CourseCard />
-    </div>
+        <Course />
+      </div>
     </>
   )
 }

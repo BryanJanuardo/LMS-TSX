@@ -9,7 +9,7 @@ const taskScheme = new mongoose.Schema({
     'TaskDueDate': Date,
 
 },{
-    collections: 'task'
+    collections: 'tasks'
 })
 
-module.exports = mongoose.model('Task',taskScheme)
+module.exports = mongoose.model('Task', taskScheme)
