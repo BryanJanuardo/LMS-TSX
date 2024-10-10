@@ -1,0 +1,25 @@
+[
+    {
+    "_id": 1,
+    "CourseName": "Machine Learning",
+    "SKS": 25
+  },
+  {
+    "_id": 2,
+    "CourseName": "Deep Learning",
+    "SKS": 20,
+    "__v": 0
+  },
+  {
+    "_id": 3,
+    "CourseName": "Speech Recognation",
+    "SKS": 10,
+    "__v": 1
+  },
+  {
+    "_id": 4,
+    "CourseName": "Natural Language Processing",
+    "SKS": 80,
+    "__v": 0
+  }
+]

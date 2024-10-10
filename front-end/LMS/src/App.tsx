@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard'
 import FormCourse  from './pages/FormCourse'
 import ListCourses from './pages/ListCourses'
+import CourseSessions from './pages/CourseSessions'
 function App() {
   return (
     <>
@@ -12,6 +13,7 @@ function App() {
           <Route path='/' element={<Dashboard />} />
           <Route path='/courses' element={<ListCourses />} />
           <Route path='/courses/create' element={<FormCourse />} />
+          <Route path='/courses/sessions' element={<CourseSessions />} />
         </Routes>
       </BrowserRouter>
     </>

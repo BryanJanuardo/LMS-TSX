@@ -37,16 +37,18 @@ const ListCourses = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {courses.map((course) => (
-            <div
-              key={course._id}
-              className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-2 cursor-pointer animate-slideUp"
-            >
-              <h2 className="text-2xl font-semibold mb-2">{course.CourseName}</h2>
-              <p className="text-gray-700 mb-2">Course ID: LOLNOOB1232</p>
-              <p className="text-gray-700">SKS: {course.SKS}</p>
-              <br />
-              <p className='opacity-60'>-View Details-</p>
-            </div>
+            <a href="/courses/sessions">
+              <div
+                key={course._id}
+                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-2 cursor-pointer animate-slideUp"
+              >
+                <h2 className="text-2xl font-semibold mb-2">{course.CourseName}</h2>
+                <p className="text-gray-700 mb-2">Course ID: LOLNOOB1232</p>
+                <p className="text-gray-700">SKS: {course.SKS}</p>
+                <br />
+                <p className='opacity-60'>-View Details-</p>
+              </div>
+            </a>
           ))}
         </div>
       )}
