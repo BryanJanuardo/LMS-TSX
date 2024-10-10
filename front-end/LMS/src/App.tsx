@@ -11,6 +11,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Dashboard />} />
           <Route path='/courses' element={<ListCourses />} />
+          <Route path='/courses/create' element={<FormCourse />} />
         </Routes>
       </BrowserRouter>
     </>
