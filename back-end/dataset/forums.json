@@ -5,6 +5,68 @@
         "ForumDescription": "This is session 1",
         "CreatedDate": "2024-10-02T10:00:00.000Z",
         "FilePath": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/panda.jpg",
-        "SessionLearningID": 1
+        "SessionLearningID": 1,
+        "ForumID": null,
+        "UserID" : 1
+    },
+    {
+        "_id": 2,
+        "ForumTitle": "Session 2",
+        "ForumDescription": "This is session 2",
+        "CreatedDate": "2024-10-02T10:00:00.000Z",
+        "FilePath": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/panda.jpg",
+        "SessionLearningID": 1,
+        "ForumID": 1,
+        "UserID" : 1
+    },
+    {
+        "_id": 3,
+        "ForumTitle": "Session 3",
+        "ForumDescription": "This is session 3",
+        "CreatedDate": "2024-10-02T10:00:00.000Z",
+        "FilePath": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/panda.jpg",
+        "SessionLearningID": 1,
+        "ForumID": 1,
+        "UserID": 3
+    },
+    {
+        "_id": 4,
+        "ForumTitle": "Session 4",
+        "ForumDescription": "This is session 4",
+        "CreatedDate": "2024-10-02T10:00:00.000Z",
+        "FilePath": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/panda.jpg",
+        "SessionLearningID": 1,
+        "ForumID": 2,
+        "UserID": 2
+    },
+    {
+        "_id": 5,
+        "ForumTitle": "Session 5",
+        "ForumDescription": "This is session 5",
+        "CreatedDate": "2024-10-02T10:00:00.000Z",
+        "FilePath": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/panda.jpg",
+        "SessionLearningID": 1,
+        "ForumID": null,
+        "UserID": 1
+    },
+    {
+        "_id": 6,
+        "ForumTitle": "Session 6",
+        "ForumDescription": "This is session 6",
+        "CreatedDate": "2024-10-02T10:00:00.000Z",
+        "FilePath": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/panda.jpg",
+        "SessionLearningID": 2,
+        "ForumID": null,
+        "UserID": 3
+    },
+    {
+        "_id": 7,
+        "ForumTitle": "Session 7",
+        "ForumDescription": "This is session 7",
+        "CreatedDate": "2024-10-02T10:00:00.000Z",
+        "FilePath": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/panda.jpg",
+        "SessionLearningID": 3,
+        "ForumID": null,
+        "UserID": 2
     }
 ]

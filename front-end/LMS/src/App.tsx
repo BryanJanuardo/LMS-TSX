@@ -7,6 +7,9 @@ import CourseSessions from './pages/CourseSessions'
 function App() {
   return (
     <>
+
+      {/* pake use context buat session authentication */}
+      {/* pake use call back buat nrimo API */}
       <Navbar />
       <BrowserRouter>
         <Routes>
