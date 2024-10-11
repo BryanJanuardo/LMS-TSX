@@ -3,42 +3,26 @@ import ICourseLearning from '../interfaces/courselearning';
 import ICourse from '../interfaces/course';
 
 import {fetchCourseLearning} from '../API/CourseLearning_API';
-import { fetchCourseByID } from '../API/Course_API';
 
 const ListCourses = () => {
-  const [courseLearnings, setCourseLearnings] = useState<ICourseLearning[]>([]);
   const [courses, setCourses] = useState<ICourse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   
   useEffect(() => {
-    const getCourseLearnings = async () => {
-      try {
-        const data = await fetchCourseLearning();
-        setError(null);
-        setCourseLearnings(data);
-      } catch (error) {
-        setError('Failed to fetch courses');
-      } finally {
-        setLoading(false);
-      }
-    }
-    
     const getCourses = async () => {
       try {
-        courseLearnings.map(async (courseLearning) => {
-          const data = await fetchCourseByID(courseLearning._id);
-          courses.push(data);
-        })
+        const data: ICourseLearning[] = await fetchCourseLearning();
+        const courseData: ICourse[] = data.map(item => item.CourseID);
+        setCourses(courseData);
         setError(null);
       } catch (error) {
         setError('Failed to fetch courses');
       } finally {
         setLoading(false);
       }
-    }
-
-    getCourseLearnings();
+    };
+  
     getCourses();
   }, []);
 
@@ -55,13 +39,13 @@ const ListCourses = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {courses.map((course) => (
-            <a href="/courses/sessions">
+            <a key={course._id} href={`/courses/${course._id}/sessions/1`}>
               <div
                 key={course._id}
                 className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-2 cursor-pointer animate-slideUp"
               >
                 <h2 className="text-2xl font-semibold mb-2">{course.CourseName}</h2>
-                <p className="text-gray-700 mb-2">Course ID: LOLNOOB1232</p>
+                <p className="text-gray-700 mb-2">Course ID: {course._id}</p>
                 <p className="text-gray-700">SKS: {course.SKS}</p>
                 <br />
                 <p className='opacity-60'>-View Details-</p>

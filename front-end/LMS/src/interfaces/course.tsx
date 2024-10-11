@@ -1,5 +1,5 @@
 interface Course {
-  _id: string;
+  _id: number;
   CourseName: string;
   SKS: number;
 }

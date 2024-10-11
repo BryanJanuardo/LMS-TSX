@@ -13,6 +13,17 @@ router.get('/', async(req, res) => {
   }
 });
 
+// get by id
+router.get('/:id', async(req, res) => {
+    console.log(req.params.id);
+    try{
+        const course = await Course.findById(req.params.id);
+        res.json(course);
+    } catch (error){
+        res.status(500).json({ error: 'Failed fetch Course '});
+    }
+})
+
 // create
 router.post('/create', async(req, res) => {
     try{
