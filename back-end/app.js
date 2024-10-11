@@ -11,6 +11,8 @@ var booksRouter = require('./routes/books');
 var materialRouter = require('./routes/materials');
 var courseRouter = require('./routes/courses');
 var taskRouter = require('./routes/tasks');
+var sessionlearningsRouter = require('./routes/sessionlearnings');
+var courselearningsRouter = require('./routes/courselearnings');
 
 mongoose.connect('mongodb://localhost:27017/LMS', {
   useNewUrlParser: true,
@@ -36,6 +38,8 @@ app.use('/api/books', booksRouter);
 app.use('/api/materials', materialRouter);
 app.use('/api/courses', courseRouter);
 app.use('/api/tasks', taskRouter);
+app.use('/api/courselearnings', courselearningsRouter);
+app.use('/api/sessionlearnings', sessionlearningsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
