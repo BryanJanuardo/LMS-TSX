@@ -1,3 +1,20 @@
 [
-    
+    {
+        "_id": 1,
+        "ClassName": "LD-91",
+        "CourseID": 1,
+        "SessionLearningID": [1, 2]
+    },
+    {
+        "_id": 2,
+        "ClassName": "LD-92",
+        "CourseID": 2,
+        "SessionLearningID": [3, 4]
+    },
+    {
+        "_id": 3,
+        "ClassName": "LD-93",
+        "CourseID": 3,
+        "SessionLearningID": [5]
+    }
 ]

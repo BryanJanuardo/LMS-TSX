@@ -5,4 +5,4 @@ interface CourseLearning{
     CourseID: number;
 }
 
-export default CourseLearning
+export default CourseLearning;

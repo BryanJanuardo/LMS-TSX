@@ -6,7 +6,10 @@ const SessionLearning = require('../models/sessionlearning');
 // get all
 router.get('/', async(req, res) => {
   try{
-    const Session = await SessionLearning.find();
+    const Session = await SessionLearning.find()
+    .populate('SessionID')
+    .populate('MaterialID')
+    .populate('TaskID');
     res.json(Session);
   } catch (error){
     res.status(500).json({ error: 'Failed fetch SessionLearning '});

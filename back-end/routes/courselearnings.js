@@ -6,12 +6,24 @@ const CourseLearning = require('../models/courselearning');
 // get all
 router.get('/', async(req, res) => {
   try{
-    const course = await CourseLearning.find();
-    res.json(course);
+    const courseLearning = await CourseLearning.find()
+    .populate('CourseID')
+    .populate('SessionLearningID');
+    res.json(courseLearning);
   } catch (error){
     res.status(500).json({ error: 'Failed fetch CourseLearning '});
   }
 });
+
+// get by id
+router.get('/:id', async(req, res) => {
+    try{
+        const course = await CourseLearning.findById(req.params.id);
+        res.json(course);
+    } catch (error){
+        res.status(500).json({ error: 'Failed fetch CourseLearning '});
+    }
+})
 
 // create
 router.post('/create', async(req, res) => {

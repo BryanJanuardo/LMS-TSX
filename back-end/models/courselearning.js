@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 
 const courseLearningSchema = new mongoose.Schema({
     _id: Number,
-    SessionLearningID: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SessionLearning' }],
-    CourseID: mongoose.Schema.Types.ObjectId, ref: 'Course',
+    ClassName: String,
+    SessionLearningID: [{ type: Number, ref: 'SessionLearning' }],
+    CourseID: { type: Number, ref: 'Course'},
 }, {
     collection: 'courselearnings',
 });

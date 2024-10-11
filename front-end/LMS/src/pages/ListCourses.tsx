@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import ICourse from '../interfaces/course'
+import ICourseLearning from '../interfaces/courselearning';
+import ICourse from '../interfaces/course';
 
-import {fetchCourses} from '../API/Course_API';
+import {fetchCourseLearning} from '../API/CourseLearning_API';
+import { fetchCourseByID } from '../API/Course_API';
 
 const ListCourses = () => {
+  const [courseLearnings, setCourseLearnings] = useState<ICourseLearning[]>([]);
   const [courses, setCourses] = useState<ICourse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   
   useEffect(() => {
-    const getCourses = async () => {
+    const getCourseLearnings = async () => {
       try {
-        const data = await fetchCourses();
+        const data = await fetchCourseLearning();
         setError(null);
-        setCourses(data);
+        setCourseLearnings(data);
       } catch (error) {
         setError('Failed to fetch courses');
       } finally {
@@ -21,6 +24,21 @@ const ListCourses = () => {
       }
     }
     
+    const getCourses = async () => {
+      try {
+        courseLearnings.map(async (courseLearning) => {
+          const data = await fetchCourseByID(courseLearning._id);
+          courses.push(data);
+        })
+        setError(null);
+      } catch (error) {
+        setError('Failed to fetch courses');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    getCourseLearnings();
     getCourses();
   }, []);
 

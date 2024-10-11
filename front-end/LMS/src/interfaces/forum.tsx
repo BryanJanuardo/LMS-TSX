@@ -6,6 +6,7 @@ interface Forum {
     FilePath: string;
     SessionLearningID: number;
     ForumID: number;
+    UserID: number;
   }
   
   export default Forum;

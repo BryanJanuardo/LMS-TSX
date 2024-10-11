@@ -4,11 +4,11 @@ const forumSchema = new mongoose.Schema({
     _id: Number,
     ForumTitle: String,
     ForumDescription: String,
-    SessionID: mongoose.Schema.Types.ObjectId, ref: 'Session',
-    ForumID: mongoose.Schema.Types.ObjectId, ref: 'Forum',
+    SessionID: { type: Number, ref: 'Session'},
+    ForumID: { type: Number, ref: 'Forum'},
     CreatedDate: Date,
     FilePath: String,
-    UserID: mongoose.Schema.Types.ObjectId, ref: 'User',
+    UserID: { type: Number, ref: 'User'},
 }, {
     collection: 'forums',
 });

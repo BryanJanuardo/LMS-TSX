@@ -5,7 +5,7 @@
         "UserEmail" : "4kx6T@example.com",
         "UserPassword" : "password1",
         "UserDOB" : "2000-01-01T00:00:00.000-0800",
-        "UserPhotoPath" : "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/white.jpg",
+        "UserPhotoPath" : "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/white.jpg"
     },
     {
         "_id": 2,
@@ -13,7 +13,7 @@
         "UserEmail" : "4kx6T@example.com",
         "UserPassword" : "password2",
         "UserDOB" : "2000-01-01T00:00:00.000-0800",
-        "UserPhotoPath" : "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/white.jpg",
+        "UserPhotoPath" : "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/white.jpg"
     },
     {
         "_id": 3,
@@ -21,7 +21,7 @@
         "UserEmail" : "4kx6T@example.com",
         "UserPassword" : "password3",
         "UserDOB" : "2000-01-01T00:00:00.000-0800",
-        "UserPhotoPath" : "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/white.jpg",
+        "UserPhotoPath" : "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/white.jpg"
     },
     {
         "_id": 4,
@@ -29,6 +29,6 @@
         "UserEmail" : "4kx6T@example.com",
         "UserPassword" : "password4",
         "UserDOB" : "2000-01-01T00:00:00.000-0800",
-        "UserPhotoPath" : "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/white.jpg",
+        "UserPhotoPath" : "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/white.jpg"
     }
 ]

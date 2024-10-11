@@ -6,8 +6,8 @@ const Course = require('../models/course');
 // get all
 router.get('/', async(req, res) => {
   try{
-    const materials = await Course.find();
-    res.json(materials);
+    const courses = await Course.find();
+    res.json(courses);
   } catch (error){
     res.status(500).json({ error: 'Failed fetch course '});
   }
@@ -16,8 +16,8 @@ router.get('/', async(req, res) => {
 // create
 router.post('/create', async(req, res) => {
     try{
-        const newMaterial = await Course.create(req.body);
-        res.status(201).json(newMaterial);
+        const newCourse = await Course.create(req.body);
+        res.status(201).json(newCourse);
     } catch (error){
         res.status(500).json({ message: 'Error creating course', error });
     }
@@ -26,11 +26,11 @@ router.post('/create', async(req, res) => {
 // update
 router.put('/update/:id', async(req, res) => {
     try{
-        const currMaterial = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!currMaterial) {
+        const currCourse = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!currCourse) {
             return res.status(404).json({ message: 'Course not found' });
         }
-        return res.status(200).json(currMaterial);
+        return res.status(200).json(currCourse);
     } catch (error){
         res.status(500).json({ message: 'Error updating Course', error });
     }
@@ -38,11 +38,11 @@ router.put('/update/:id', async(req, res) => {
 
 router.delete('/delete/:id', async(req, res) => {
     try{
-        const currMaterial = await Course.findByIdAndDelete(req.params.id);
-        if (!currMaterial) {
+        const currCourse = await Course.findByIdAndDelete(req.params.id);
+        if (!currCourse) {
             return res.status(404).json({ message: 'Course not found' });
         }
-        res.status(200).json(currMaterial);
+        res.status(200).json(currCourse);
     } catch (error){
         res.status(500).json({ message: 'Error deleting book', error });
     }
