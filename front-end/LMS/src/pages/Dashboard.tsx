@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
   return (
@@ -18,7 +19,7 @@ const Dashboard = () => {
           <h2 className="text-2xl font-semibold mb-4">Course Management</h2>
           <p>Create, edit, and delete courses. Manage course content and assignments for students.</p>
           <button className="mt-4 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transform hover:scale-105 transition duration-300 ease-in-out">
-            Manage Courses
+            <Link to="/courses/create">Manage Courses</Link>
           </button>
         </div>
 
