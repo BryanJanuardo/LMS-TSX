@@ -1,0 +1,37 @@
+[
+    {
+        "_id": 1,
+        "SessionName": "Introduction to Programming",
+        "SessionDescription": "Learn the basics of programming, variables, loops, and functions.",
+        "SessionStart": "2024-10-01T10:00:00.000Z",
+        "SessionEnd": "2024-10-01T12:00:00.000Z"
+    },
+    {
+        "_id": 2,
+        "SessionName": "Advanced Programming",
+        "SessionDescription": "Dive deeper into object-oriented programming, classes, and modules.",
+        "SessionStart": "2024-10-02T10:00:00.000Z",
+        "SessionEnd": "2024-10-02T12:00:00.000Z"
+    },
+    {
+        "_id": 3,
+        "SessionName": "Web Development",
+        "SessionDescription": "Learn how to build web applications using HTML, CSS, and JavaScript.",
+        "SessionStart": "2024-10-03T10:00:00.000Z",
+        "SessionEnd": "2024-10-03T12:00:00.000Z"
+    },
+    {
+        "_id": 4,
+        "SessionName": "Mobile Development",
+        "SessionDescription": "Learn how to build mobile applications using React Native.",
+        "SessionStart": "2024-10-04T10:00:00.000Z",
+        "SessionEnd": "2024-10-04T12:00:00.000Z"
+    },
+    {
+        "_id": 5,
+        "SessionName": "Game Development",
+        "SessionDescription": "Learn how to build 2D and 3D games using Unity.",
+        "SessionStart": "2024-10-05T10:00:00.000Z",
+        "SessionEnd": "2024-10-05T12:00:00.000Z"
+    }
+]

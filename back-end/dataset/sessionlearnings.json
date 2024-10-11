@@ -1,0 +1,32 @@
+[
+    {
+        "_id": 1,
+        "SessionID": 1,
+        "MaterialID": [1, 2, 3],
+        "TaskID" : [1]
+    },
+    {
+        "_id": 2,
+        "SessionID": 2,
+        "MaterialID": [4, 5, 6],
+        "TaskID" : [2, 3]
+    },
+    {
+        "_id": 3,
+        "SessionID": 3,
+        "MaterialID": [7, 8, 9],
+        "TaskID" : [4]
+    },
+    {
+        "_id": 4,
+        "SessionID": 4,
+        "MaterialID": [10, 11, 12],
+        "TaskID" : []
+    },
+    {
+        "_id": 5,
+        "SessionID": 5,
+        "MaterialID": [13, 14, 15],
+        "TaskID" : []
+    }
+]
