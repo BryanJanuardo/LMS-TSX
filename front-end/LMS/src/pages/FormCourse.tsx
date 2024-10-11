@@ -8,7 +8,7 @@ interface Course {
   SKS: number;
 }
 
-const Courses: React.FC = () => {
+const  FormCourse: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]); // To store the courses list
   const [form, setForm] = useState<Pick<Course, 'CourseName' | 'SKS'>>({ CourseName: '', SKS: 0 }); // Form input state
   const [editingCourseId, setEditingCourseId] = useState<number | null>(null); // To track which course is being edited
@@ -171,4 +171,4 @@ const Courses: React.FC = () => {
   );
 };
 
-export default Courses;
+export default FormCourse;
