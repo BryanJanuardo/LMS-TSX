@@ -22,7 +22,7 @@ router.get('/:id', async(req, res) => {
     } catch (error){
         res.status(500).json({ error: 'Failed fetch Course '});
     }
-})
+});
 
 // create
 router.post('/create', async(req, res) => {

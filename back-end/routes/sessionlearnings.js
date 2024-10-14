@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 const SessionLearning = require('../models/sessionlearning');
-
+const Session = require('../models/session');
+const Material = require('../models/material');
+const Task = require('../models/task');
 // get all
 router.get('/', async(req, res) => {
   try{

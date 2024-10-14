@@ -13,6 +13,7 @@ var courseRouter = require('./routes/courses');
 var taskRouter = require('./routes/tasks');
 var sessionlearningsRouter = require('./routes/sessionlearnings');
 var courselearningsRouter = require('./routes/courselearnings');
+var forumRouter = require('./routes/forum');
 
 mongoose.connect('mongodb://localhost:27017/LMS', {
   useNewUrlParser: true,
@@ -40,6 +41,7 @@ app.use('/api/courses', courseRouter);
 app.use('/api/tasks', taskRouter);
 app.use('/api/courselearnings', courselearningsRouter);
 app.use('/api/sessionlearnings', sessionlearningsRouter);
+app.use('/api/forums', forumRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

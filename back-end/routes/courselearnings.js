@@ -4,11 +4,42 @@ var router = express.Router();
 const CourseLearning = require('../models/courselearning');
 
 // get all
-router.get('/', async(req, res) => {
-  try{
+router.get('/', async (req, res) => {
+  try {
     const courseLearning = await CourseLearning.find()
+      .populate('CourseID')
+      .populate([
+        {
+          path: 'SessionLearningID',
+          populate: [
+            { path: 'SessionID', model: 'Session' },
+            { path: 'MaterialID', model: 'Material' },
+            { path: 'TaskID', model: 'Task' }
+          ]
+        }
+      ]);
+    res.json(courseLearning);
+  } catch (error) {
+    console.error('Error fetching CourseLearning:', error); // Log the actual error
+    res.status(500).json({ error: 'Failed to fetch CourseLearning', details: error.message });
+  }
+});
+
+// get by id
+router.get('/:id', async(req, res) => {
+  try{
+    const courseLearning = await CourseLearning.findById(req.params.id)
     .populate('CourseID')
-    .populate('SessionLearningID');
+    .populate([
+      {
+        path: 'SessionLearningID',
+        populate: [
+          { path: 'SessionID', model: 'Session' },
+          { path: 'MaterialID', model: 'Material' },
+          { path: 'TaskID', model: 'Task' }
+        ]
+      }
+    ]);
     res.json(courseLearning);
   } catch (error){
     res.status(500).json({ error: 'Failed fetch CourseLearning '});
