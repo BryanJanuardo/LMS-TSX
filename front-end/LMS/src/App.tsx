@@ -16,7 +16,7 @@ function App() {
           <Route path='/' element={<Dashboard />} />
           <Route path='/courses' element={<ListCourses />} />
           <Route path='/courses/create' element={<FormCourse />} />
-          <Route path='/courses?courseId=:courseId' element={<CourseSessions />} />
+          <Route path='/courselearnings/:courselearningID' element={<CourseSessions />} />
         </Routes>
       </BrowserRouter>
     </>

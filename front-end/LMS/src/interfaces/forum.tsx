@@ -1,12 +1,15 @@
+import IUser from "../interfaces/user";
+
 interface Forum {
-    _id: string;
+    _id: number;
     ForumTitle: string;
     ForumDescription: string;
     CreatedDate: Date;
     FilePath: string;
     SessionLearningID: number;
-    ForumID: number;
-    UserID: number;
+    ForumID: Forum;
+    ForumRepliesID: Forum[];
+    UserID: IUser;
   }
   
   export default Forum;

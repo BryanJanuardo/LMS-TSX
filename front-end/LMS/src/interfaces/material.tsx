@@ -1,7 +1,8 @@
 interface Material {
-  id: string;
-  title: string;
-  description: string;
+  _id: number;
+  MaterialName: string;
+  MaterialType: string;
+  MaterialPath: string;
 }
 
 export default Material;

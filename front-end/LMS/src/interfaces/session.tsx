@@ -1,12 +1,9 @@
-import IMaterial from "./material";
-
 interface Session {
-  id: string;
-  name: string;
-  description: string;
-  start: string;
-  end: string;
-  materials: IMaterial[];
+  _id: number;
+  SessionName: string;
+  SessionDescription: string;
+  SessionStart: Date;
+  SessionEnd: Date;
 }
 
 export default Session;
