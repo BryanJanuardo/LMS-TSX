@@ -4,6 +4,8 @@ import Dashboard from './pages/Dashboard'
 import FormCourse  from './pages/FormCourse'
 import ListCourses from './pages/ListCourses'
 import CourseSessions from './pages/CourseSessions'
+import FormSession from './pages/FormSession'
+import FormSessionLearning from './pages/FormSessionLearning'
 function App() {
   return (
     <>
@@ -17,6 +19,9 @@ function App() {
           <Route path='/courses' element={<ListCourses />} />
           <Route path='/courses/create' element={<FormCourse />} />
           <Route path='/courselearnings/:courselearningID' element={<CourseSessions />} />
+          <Route path='/sessions/create/:courselearningID' element={<FormSession />} />
+          <Route path='/sessionslearning/create' element={<FormSessionLearning />} />
+          
         </Routes>
       </BrowserRouter>
     </>
