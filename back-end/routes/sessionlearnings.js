@@ -17,6 +17,17 @@ router.get('/', async(req, res) => {
     res.status(500).json({ error: 'Failed fetch SessionLearning '});
   }
 });
+router.get('/:id', async(req, res) => {
+  try{
+    const Session = await SessionLearning.findById(req.params.id)
+    .populate('SessionID')
+    .populate('MaterialID')
+    .populate('TaskID');
+    res.json(Session);
+  } catch (error){
+    res.status(500).json({ error: 'Failed fetch SessionLearning '});
+  }
+});
 
 // create
 router.post('/create', async(req, res) => {

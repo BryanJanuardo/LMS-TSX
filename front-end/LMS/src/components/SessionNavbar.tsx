@@ -37,7 +37,7 @@ const SessionNavbar: React.FC<ISessionLearningProps> = ({ sessions }) => {
       </nav>
 
       {/* Content Area */}
-      <SessionContent session={selectedSession} />
+      <SessionContent session={selectedSession} courseID={courselearningID} />
 
       {/* Forum Section Below Content Area */}
       {/* <ForumContent /> */}
