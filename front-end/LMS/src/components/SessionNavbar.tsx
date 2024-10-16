@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import ISessionLearning from "../interfaces/sessionlearning";
 import SessionContent from '../components/SessionContent';
+import { IconButton } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+// import FormSession from "../pages/FormSession";
+import { Link, useParams } from "react-router-dom";
 interface ISessionLearningProps {
   sessions: ISessionLearning[];
 }
 
 const SessionNavbar: React.FC<ISessionLearningProps> = ({ sessions }) => {
   const [selectedSession, setSelectedSession] = useState<ISessionLearning>(sessions[0]);
+  const { courselearningID } = useParams<{ courselearningID: string }>();
+  console.log(sessions)
   return (
     <>
       <nav className="flex justify-center mb-8 space-x-4">
@@ -23,6 +29,11 @@ const SessionNavbar: React.FC<ISessionLearningProps> = ({ sessions }) => {
             {`Session ${index + 1}`}
           </button>
         ))}
+        <Link to ={`../sessions/create/${courselearningID}`}>
+          <IconButton aria-label="add" color="primary" >
+            <AddIcon fontSize="small"/>
+          </IconButton>
+        </Link>
       </nav>
 
       {/* Content Area */}
