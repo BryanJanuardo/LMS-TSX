@@ -44,7 +44,7 @@ const ListCourses = () => {
               >
                 <h2 className="text-2xl font-semibold mb-2">{course.CourseID.CourseName}</h2>
                 <p className="text-gray-700 mb-2 font-semibold">{course.ClassName}</p>
-                <p className="text-gray-700">SKS: {course.CourseID.CourseName}</p>
+                <p className="text-gray-700">SKS: {course.CourseID.SKS}</p>
                 <br />
                 <p className='opacity-60'>-View Details-</p>
               </div>

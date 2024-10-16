@@ -36,7 +36,7 @@ export const postSessionLearningByCourseID = async (sessionId: number) => {
             TaskID: [],
         });
         console.log(body.data);
-   
+
     }catch(err){
         throw err;
     }
