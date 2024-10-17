@@ -44,9 +44,9 @@ const SessionContent: React.FC<ISessionLearningProp> = ({session, courseID}) => 
     try {
       const {TaskName, TaskDesc, TaskDueDate} = taskForm;
       const TaskType:string = "Task";
-      const date = new Date(TaskDueDate)
-      const DueDate = date.getTime();
-      await addTaskToSessionLearningByID(Number(session._id),{TaskName, TaskDesc, TaskType , DueDate});
+      // const date = new Date(TaskDueDate)
+      // const DueDate = date.getTime();
+      await addTaskToSessionLearningByID(Number(session._id),{TaskName, TaskDesc, TaskType , TaskDueDate});
       closeModal();
     } catch (err) {
       console.error(err);
