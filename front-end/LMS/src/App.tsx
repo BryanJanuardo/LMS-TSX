@@ -6,7 +6,8 @@ import ListCourses from './pages/ListCourses'
 import CourseSessions from './pages/CourseSessions'
 import FormSession from './pages/FormSession'
 import FormSessionLearning from './pages/FormSessionLearning'
-import FormCreateSessionLearning from './pages/FormCreateSessionLearning'
+import FormCourseLearning from './pages/FormCourseLearning'
+import FormCreateSessionLearning from './components/FormCreateSessionLearning'
 function App() {
   return (
     <>
@@ -21,7 +22,8 @@ function App() {
           <Route path='/courses/create' element={<FormCourse />} />
           <Route path='/courselearnings/:courselearningID' element={<CourseSessions />} />
           <Route path='/sessions/create/:courselearningID' element={<FormSession />} />
-          <Route path='/courselearning/:courselearningID/sessions/create/' element={<FormCreateSessionLearning />} />
+          <Route path='/courselearning/:courselearningID/sessions/create/' element={<FormSessionLearning />} />
+          <Route path='/courselearnings/create' element={<FormCourseLearning />} />
           
         </Routes>
       </BrowserRouter>

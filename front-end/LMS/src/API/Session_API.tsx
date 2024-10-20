@@ -3,9 +3,9 @@ import axios from "axios";
 
 import Session from "../interfaces/models/session";
 
-export const fetchSessionsByCourseLearningID = async (courseID: number) => {
+export const fetchSessionsByCourseLearningID = async (courselearningID: number) => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/courselearning/${courseID}/sessions`);
+        const res = await axios.get(`http://localhost:5000/api/courselearnings/${courselearningID}/sessions`);
         return res.data;
     } catch (err) {
         throw err;
@@ -28,5 +28,4 @@ export const postSession = async (courselearningID: number, req: Session) => {
     }catch(err){
         throw err;
     }
-
 }

@@ -41,9 +41,9 @@ app.use('/api/materials', materialRouter);
 app.use('/api/courses', courseRouter);
 app.use('/api/tasks', taskRouter);
 app.use('/api/courselearnings', courselearningsRouter);
-app.use('/api/sessionlearnings', sessionlearningsRouter);
+app.use('/api/courselearnings', sessionlearningsRouter);
 app.use('/api/forums', forumRouter);
-app.use('/api/courselearning', sessionsRouter);
+// app.use('/api/courselearnings/:courselearningID/sessions', sessionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

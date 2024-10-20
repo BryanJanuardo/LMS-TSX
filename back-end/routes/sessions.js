@@ -5,13 +5,17 @@ const Session = require('../models/session');
 const SessionLearning = require('../models/sessionlearning');
 const CourseLearning = require('../models/courselearning');
 
-router.get('/:courseID/sessions/', async(req, res) => {
+router.get('/', async(req, res) => {
   try{
-    const courselearning = await CourseLearning.findById(req.params.courseID).populate('SessionLearningID');
-    const sessions = await courselearning.SessionLearningID;
-    res.json(sessions);
+    const courseID = req.params.courselearningID;
+    console.log(courseID);
+    const Session = await SessionLearning.find()
+    .populate('SessionID')
+    .populate('MaterialID')
+    .populate('TaskID');
+    res.json(Session);
   } catch (error){
-    res.status(500).json({ message: 'Failed fetch sessions '});
+    res.status(500).json({ error: 'Failed fetch SessionLearning '});
   }
 });
 
@@ -51,7 +55,15 @@ router.post('/:courseID/session/create', async(req, res) => {
   }
 })
 
-
+router.get('/', async(req, res) => {
+  try{
+    console.log(req.params.id);
+    const sessions = await Session.find();
+    res.json(sessions);
+  } catch (error){
+    res.status(500).json({ message: 'Failed fetch sessions '});
+  }
+});
 
 router.get('/:id', async(req, res) => {
   try{

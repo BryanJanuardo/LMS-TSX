@@ -1,87 +1,57 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import { useParams } from 'react-router-dom';
+import { deleteSession, fetchSessionsByCourseLearningID, postSession, updateSession } from '../API/SessionLearning_API';
 import axios from 'axios';
 import ISession from '../interfaces/session';
 import IMaterial from '../interfaces/material';
 import ITask from '../interfaces/task';
 import SessionLearning from '../interfaces/sessionlearning';
+import Session from '../interfaces/models/session';
 
-import { fetchSessionsByCourseLearningID } from '../API/SessionLearning_API';
-import { useParams } from 'react-router-dom';
+import FormCreateSessionLearning from '../components/FormCreateSessionLearning';
 
 const FormSessionLearning: React.FC = () => {
   const [sessions, setSessions] = useState<ISession[]>([]);
   const [materials, setMaterials] = useState<IMaterial[]>([]);
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [sessionLearnings, setSessionLearnings] = useState<SessionLearning[]>([]);
-  const [form, setForm] = useState<Pick<SessionLearning, 'SessionID' | 'MaterialID' | 'TaskID'>>({
-    SessionID: {} as ISession,
-    MaterialID: [],
-    TaskID: [],
+  const [message, setMessage] = useState<string>('');
+  const [form, setForm] = useState<Session>({
+    SessionName: '',
+    SessionDescription: '',
+    SessionStart: new Date(),
+    SessionEnd: new Date()
   });
-  const [editingSessionLearningId, setEditingSessionLearningId] = useState<number | null>(null);
-
+  const [selectedSessionLearningID, setSelectedSessionLearningID] = useState<number | null>(null);
   const { courselearningID } = useParams<{ courselearningID: string }>();
 
-  // Fetching data from the API
   const fetchSessionLearnings = async () => {
     try {
-      const response = await fetchSessionsByCourseLearningID(Number(courselearningID));
-      console.log(response);
-      setSessionLearnings(response);
+      setSessionLearnings(await fetchSessionsByCourseLearningID(Number(courselearningID)));
     } catch (error) {
       console.error('Error fetching session learnings:', error);
     }
   };
 
-  const fetchSessions = async () => {
-    try {
-      const response = await axios.get<ISession[]>('http://localhost:5000/api/sessions/');
-      setSessions(response.data);
-    } catch (error) {
-      console.error('Error fetching sessions:', error);
-    }
-  };
-
-  const fetchMaterials = async () => {
-    try {
-      const response = await axios.get<IMaterial[]>('http://localhost:5000/api/materials/');
-      setMaterials(response.data);
-    } catch (error) {
-      console.error('Error fetching materials:', error);
-    }
-  };
-
-  const fetchTasks = async () => {
-    try {
-      const response = await axios.get<ITask[]>('http://localhost:5000/api/tasks/');
-      setTasks(response.data);
-    } catch (error) {
-      console.error('Error fetching tasks:', error);
-    }
-  };
-
-  // Initializing data on component mount
   useEffect(() => {
     fetchSessionLearnings();
-    fetchSessions();
-    fetchMaterials();
-    fetchTasks();
-  }, []);
-
-  // Get next ID for a new session learning entry
-  const getNextId = (): number => {
-    if (sessionLearnings.length === 0) return 1;
-    const maxId = Math.max(...sessionLearnings.map((sl) => sl._id));
-    return maxId + 1;
-  };
+  }, [])
 
   // Create new session learning entry
-  const createSessionLearning = async (sessionLearning: Omit<SessionLearning, '_id'>) => {
+  const createSessionLearning = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
-      const newSessionLearning: SessionLearning = { ...sessionLearning, _id: getNextId() };
-      const response = await axios.post('http://localhost:5000/api/sessionlearnings/create', newSessionLearning);
-      if (response.status === 201) {
+      const data = new FormData(event.currentTarget);
+      const req: Session = {
+          SessionName: data.get('SessionName') as string,
+          SessionDescription: data.get('SessionDescription') as string,
+          SessionStart: new Date(data.get('SessionStart') as string),
+          SessionEnd: new Date(data.get('SessionEnd') as string),
+      };
+
+      const res = await postSession(Number(courselearningID), req);
+      if (res.status === 201) {
         fetchSessionLearnings();
+        setMessage('Session learning created successfully');
       }
     } catch (error) {
       console.error('Error creating session learning:', error);
@@ -89,12 +59,21 @@ const FormSessionLearning: React.FC = () => {
   };
 
   // Update existing session learning entry
-  const updateSessionLearning = async (id: number, updatedSessionLearning: Omit<SessionLearning, '_id'>) => {
+  const updateSessionLearning = async (sessionLearningID: number, event: React.FormEvent<HTMLFormElement>) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/sessionlearnings/update/${id}`, updatedSessionLearning);
-      if (response.status === 200) {
+      const data = new FormData(event.currentTarget);
+      const req: Session = {
+          SessionName: data.get('SessionName') as string,
+          SessionDescription: data.get('SessionDescription') as string,
+          SessionStart: new Date(data.get('SessionStart') as string),
+          SessionEnd: new Date(data.get('SessionEnd') as string),
+      };
+
+      const res = await updateSession(Number(courselearningID), sessionLearningID, req);
+      if (res.status === 200) {
         fetchSessionLearnings();
-        setEditingSessionLearningId(null);
+        setSelectedSessionLearningID(null);
+        setMessage('Session learning updated successfully');
       }
     } catch (error) {
       console.error('Error updating session learning:', error);
@@ -102,11 +81,13 @@ const FormSessionLearning: React.FC = () => {
   };
 
   // Delete session learning entry
-  const deleteSessionLearning = async (id: number) => {
+  const deleteSessionLearning = async (sessionID: number) => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/sessionlearnings/delete/${id}`);
+      const response = await deleteSession(Number(courselearningID), sessionID);
       if (response.status === 200) {
         fetchSessionLearnings();
+        setSelectedSessionLearningID(null);
+        setMessage('Session learning deleted successfully');
       }
     } catch (error) {
       console.error('Error deleting session learning:', error);
@@ -116,111 +97,39 @@ const FormSessionLearning: React.FC = () => {
   // Handle form submission
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (editingSessionLearningId) {
-      updateSessionLearning(editingSessionLearningId, form);
+    if (selectedSessionLearningID) {
+      updateSessionLearning(selectedSessionLearningID, e);
     } else {
-      createSessionLearning(form);
+      createSessionLearning(e);
     }
-    setForm({ SessionID: {} as ISession, MaterialID: [], TaskID: [] });
-  };
-
-  // Handle input changes for select dropdowns
-  const handleInputChange = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-    const { name, value } = e.target;
-    if (name === 'MaterialID' || name === 'TaskID') {
-      setForm((prevForm) => ({
-        ...prevForm,
-        [name]: Array.from((e.target as HTMLSelectElement).selectedOptions, (option) => {
-          const selectedId = Number(option.value);
-          return name === 'MaterialID'
-            ? materials.find((material) => material._id === selectedId)!
-            : tasks.find((task) => task._id === selectedId)!;
-        }),
-      }));
-    } else {
-      setForm((prevForm) => ({
-        ...prevForm,
-        SessionID: sessions.find((session) => session._id === Number(value))!,
-      }));
-    }
+    setForm({ SessionName: '', SessionDescription: '', SessionStart: new Date(), SessionEnd: new Date() });
   };
 
   // Handle edit click
   const handleEditClick = (sessionLearning: SessionLearning) => {
-    setEditingSessionLearningId(sessionLearning._id);
+    setSelectedSessionLearningID(sessionLearning._id);
     setForm({
-      SessionID: sessionLearning.SessionID,
-      MaterialID: sessionLearning.MaterialID,
-      TaskID: sessionLearning.TaskID,
+      SessionName: sessionLearning.SessionID.SessionName,
+      SessionDescription: sessionLearning.SessionID.SessionDescription,
+      SessionStart: sessionLearning.SessionID.SessionStart,
+      SessionEnd: sessionLearning.SessionID.SessionEnd
     });
   };
+  
+  useEffect(() => {
+    console.log(form);
+  }, [form])
 
   return (
     <div className="w-[60vw] mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
       <h1 className="text-3xl font-bold mb-6 text-center">Session Learning Management</h1>
+      <h2 className='text-xl font-bold text-center'>{message}</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4 mb-8">
-        <div className="flex flex-col">
-          <label className="font-semibold mb-2">Session</label>
-          <select
-            name="SessionID"
-            value={form.SessionID?._id || ''}
-            onChange={handleInputChange}
-            required
-            className="p-2 border border-gray-300 rounded-md"
-          >
-            <option value="" disabled>Select Session</option>
-            {sessions.map((session) => (
-              <option key={session._id} value={session._id}>
-                {session.SessionName}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="flex flex-col">
-          <label className="font-semibold mb-2">Materials</label>
-          <select
-            name="MaterialID"
-            value={form.MaterialID.map((material) => material._id)}
-            onChange={handleInputChange}
-            multiple
-            required
-            className="p-2 border border-gray-300 rounded-md"
-          >
-            {materials.map((material) => (
-              <option key={material._id} value={material._id}>
-                {material.MaterialName}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="flex flex-col">
-          <label className="font-semibold mb-2">Tasks</label>
-          <select
-            name="TaskID"
-            value={form.TaskID.map((task) => task._id)}
-            onChange={handleInputChange}
-            multiple
-            required
-            className="p-2 border border-gray-300 rounded-md"
-          >
-            {tasks.map((task) => (
-              <option key={task._id} value={task._id}>
-                {task.TaskName}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md w-full"
-        >
-          {editingSessionLearningId ? 'Update Session Learning' : 'Add Session Learning'}
-        </button>
+        <FormCreateSessionLearning form={form} courseLearningID={Number(courselearningID)} setForm={setForm}/>
       </form>
+
+      <hr className="my-8 opacity-100" />
 
       <ul className="space-y-4">
         {sessionLearnings.map((sessionLearning) => (
