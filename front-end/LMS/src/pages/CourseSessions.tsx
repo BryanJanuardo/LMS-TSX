@@ -25,7 +25,7 @@ const CourseSessions: React.FC = () => {
 
   return (
     <div className="p-4 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8 text-center">Course Detail</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center animate-fadeIn">Course Detail</h1>
 
       {/* Session Navbar */}  
       {courseLearning?.SessionLearningID ? (

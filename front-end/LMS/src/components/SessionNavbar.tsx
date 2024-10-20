@@ -12,10 +12,9 @@ interface ISessionLearningProps {
 const SessionNavbar: React.FC<ISessionLearningProps> = ({ sessions }) => {
   const [selectedSession, setSelectedSession] = useState<ISessionLearning>(sessions[0]);
   const { courselearningID } = useParams<{ courselearningID: string }>();
-  console.log(sessions)
   return (
     <>
-      <nav className="flex justify-center mb-8 space-x-4">
+      <nav className="flex justify-center mb-8 space-x-4 animate-fadeIn">
         {sessions.map((session, index) => (
           <button
             key={session._id}
@@ -29,13 +28,12 @@ const SessionNavbar: React.FC<ISessionLearningProps> = ({ sessions }) => {
             {`Session ${index + 1}`}
           </button>
         ))}
-        <Link to ={`../sessions/create/${courselearningID}`}>
+        <Link to ={`../courselearning/${courselearningID}/sessions/create/`}>
           <IconButton aria-label="add" color="primary" >
             <AddIcon fontSize="small"/>
           </IconButton>
         </Link>
       </nav>
-
       {/* Content Area */}
       <SessionContent session={selectedSession} />
 

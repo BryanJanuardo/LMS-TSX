@@ -13,7 +13,7 @@ const SessionContent: React.FC<ISessionLearningProp> = ({session}) => {
 
   return (
     <>
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 animate-slideUp">
     {/* Left Side: Session Details */}
     <div className="bg-white max-h-90 overflow-y-auto p-6 rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold mb-4">{session.SessionID.SessionName}</h2>
@@ -109,7 +109,6 @@ const SessionContent: React.FC<ISessionLearningProp> = ({session}) => {
         )}
       </div>
     </div>
-
   </div>
   <ForumContent SessionLearningID={session._id} />
   </>

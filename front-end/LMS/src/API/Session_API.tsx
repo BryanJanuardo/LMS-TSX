@@ -1,11 +1,13 @@
 /* eslint-disable no-useless-catch */
 import axios from "axios";
 
-export const fetchSessions = async () => {
-    try{
-        const res = await axios.get('http://localhost:5000/api/sessions');
+import Session from "../interfaces/models/session";
+
+export const fetchSessionsByCourseLearningID = async (courseID: number) => {
+    try {
+        const res = await axios.get(`http://localhost:5000/api/courselearning/${courseID}/sessions`);
         return res.data;
-    }catch(err){
+    } catch (err) {
         throw err;
     }
 }
@@ -17,4 +19,14 @@ export const fetchSessionsID = async (id: number) => {
     }catch(err){
         throw err;
     }
+}
+
+export const postSession = async (courselearningID: number, req: Session) => {
+    try{
+        await axios.post(`http://localhost:5000/api/courselearning/${courselearningID}/session/create`, req);
+        return "Create new session success";
+    }catch(err){
+        throw err;
+    }
+
 }

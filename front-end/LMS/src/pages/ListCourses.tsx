@@ -28,7 +28,7 @@ const ListCourses = () => {
   // MASIH SALAH INI HARUSNYA BUKAN FETCH DI TABLE COURSE TAPI TABLE TRCourseUser
   // INI GEGARA TABEL TRCOURSELEARNING BELOM DIBUATTTTTTTTTTTTTTTTTTTTTTTT GYATTT
   return (
-    <div className="p-4 bg-gray-100 min-h-screen">
+    <div className="p-4 bg-gray-100 min-h-screen animate-fadeIn">
       <h1 className="text-3xl font-bold mb-8 text-center">Available Courses</h1>
       {loading ? (
         <p className="text-center">Loading courses...</p>
@@ -44,7 +44,7 @@ const ListCourses = () => {
               >
                 <h2 className="text-2xl font-semibold mb-2">{course.CourseID.CourseName}</h2>
                 <p className="text-gray-700 mb-2 font-semibold">{course.ClassName}</p>
-                <p className="text-gray-700">SKS: {course.CourseID.CourseName}</p>
+                <p className="text-gray-700">SKS: {course.CourseID.SKS}</p>
                 <br />
                 <p className='opacity-60'>-View Details-</p>
               </div>

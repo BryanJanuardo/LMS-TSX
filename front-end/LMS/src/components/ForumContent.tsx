@@ -6,6 +6,7 @@ import CancelFileImg from '../assets/Cancel_Attachment.svg'
 import IForum from "../interfaces/forum";
 
 import { fetchForumPostsByLearningCourseID } from "../API/Forum_API";
+import { Forum } from "@mui/icons-material";
 
 interface ISessionLearningID {
   SessionLearningID: number;
@@ -54,16 +55,18 @@ const ForumContent: React.FC<ISessionLearningID> = ({ SessionLearningID }) => {
       try {
         const data = await fetchForumPostsByLearningCourseID(SessionLearningID);
         setForumPosts(data);
+        console.log("dwdawd");
       } catch (error) {
         console.error("Error fetching forum posts:", error);
       }
     };
-
+    
     getPosts();
-  }, []);
+  }, [SessionLearningID]);
+  console.log(forumPosts);
 
   return (
-    <div className="bg-white w-full p-6 rounded-lg shadow-md mt-8">
+    <div className="bg-white w-full p-6 rounded-lg shadow-md mt-8 animate-slideUp">
       <h2 className="text-2xl font-semibold mb-4">Forum Discussions</h2>
       <div className="p-4 border-t border-gray-300">
         {/* Displaying Forum Posts */}

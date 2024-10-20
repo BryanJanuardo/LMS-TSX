@@ -2,15 +2,14 @@
 import axios from "axios";
 import { fetchSessionsID } from "./Session_API";
 
-export const fetchSessionLearning = async () => {
-    try{
-        const res = await axios.get('http://localhost:5000/api/sessionlearnings');
+export const fetchSessionsByCourseLearningID = async (courseID: number) => {
+    try {
+        const res = await axios.get(`http://localhost:5000/api/courselearning/${courseID}/sessions`);
         return res.data;
-    }catch(err){
+    } catch (err) {
         throw err;
     }
 }
-
 
 export const postSessionLearningByCourseID = async (sessionId: number) => {
     try{
@@ -29,3 +28,4 @@ export const postSessionLearningByCourseID = async (sessionId: number) => {
         throw err;
     }
 }
+

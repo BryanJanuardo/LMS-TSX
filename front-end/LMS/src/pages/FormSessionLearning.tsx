@@ -5,6 +5,9 @@ import IMaterial from '../interfaces/material';
 import ITask from '../interfaces/task';
 import SessionLearning from '../interfaces/sessionlearning';
 
+import { fetchSessionsByCourseLearningID } from '../API/SessionLearning_API';
+import { useParams } from 'react-router-dom';
+
 const FormSessionLearning: React.FC = () => {
   const [sessions, setSessions] = useState<ISession[]>([]);
   const [materials, setMaterials] = useState<IMaterial[]>([]);
@@ -17,11 +20,14 @@ const FormSessionLearning: React.FC = () => {
   });
   const [editingSessionLearningId, setEditingSessionLearningId] = useState<number | null>(null);
 
+  const { courselearningID } = useParams<{ courselearningID: string }>();
+
   // Fetching data from the API
   const fetchSessionLearnings = async () => {
     try {
-      const response = await axios.get<SessionLearning[]>('http://localhost:5000/api/sessionlearnings/');
-      setSessionLearnings(response.data);
+      const response = await fetchSessionsByCourseLearningID(Number(courselearningID));
+      console.log(response);
+      setSessionLearnings(response);
     } catch (error) {
       console.error('Error fetching session learnings:', error);
     }

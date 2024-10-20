@@ -16,6 +16,7 @@ interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = ({ post, currRecursionDepth, state}) => {
   const [replies, setReplies] = useState<IForum[]>([]);
+  const [openReplies, setOpenReplies] = useState<boolean>(false);
 
   useEffect(() => {
     const getReplies = async () => {
@@ -35,8 +36,6 @@ const PostCard: React.FC<PostCardProps> = ({ post, currRecursionDepth, state}) =
     state.setNewMessage(''); // Reset message input when replying
     state.setSelectedFile(null); // Reset file input
   };
-
-  console.log(post);
 
   return (
     <div>
@@ -63,17 +62,25 @@ const PostCard: React.FC<PostCardProps> = ({ post, currRecursionDepth, state}) =
             >
               Reply
             </button>
+            <button
+              onClick={() => setOpenReplies(!openReplies)}
+              className="text-indigo-600 hover:underline mt-2 block"
+            >
+              {replies.length > 0 ? `View Other Replies (${replies.length})` : ''}
+            </button>
           </div>
         </div>
-        {
-          replies !== null && replies.length > 0 && (
-            replies.map((reply) => (
-              <div key={reply._id}>
-                <PostCard post={reply} currRecursionDepth={currRecursionDepth + 1} state={state} />
-              </div>
-            ))
-          )
-        }
+        <div className={openReplies ? '' : 'hidden'}>
+          {
+            replies !== null && replies.length > 0 && (
+              replies.map((reply) => (
+                <div key={reply._id}>
+                  <PostCard post={reply} currRecursionDepth={currRecursionDepth + 1} state={state} />
+                </div>
+              ))
+            )
+          }
+        </div>
     </div>
   )
 }

@@ -43,7 +43,7 @@ app.use('/api/tasks', taskRouter);
 app.use('/api/courselearnings', courselearningsRouter);
 app.use('/api/sessionlearnings', sessionlearningsRouter);
 app.use('/api/forums', forumRouter);
-app.use('/api/sessions', sessionsRouter);
+app.use('/api/courselearning', sessionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
