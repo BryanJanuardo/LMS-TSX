@@ -2,13 +2,22 @@ var express = require("express");
 var router = express.Router({ mergeParams: true });
 
 const Material = require("../models/material");
+const SessionLearning = require("../models/sessionlearning");
 
 // get all
 router.get("/", async (req, res) => {
   let status = 500;
-  const payload = { header: `Fetch All Materials`, message: ``, error: ``, data: null };
+  const payload = {
+    header: `Fetch All Materials`,
+    message: ``,
+    error: ``,
+    data: null,
+  };
   try {
-    const materials = await Material.find();
+    const sessionlearningID = await SessionLearning.findById(
+      req.params.SessionLearningID
+    ).populate({ path: "MaterialID", model: "Material" });
+    const materials = sessionlearningID.MaterialID;
     status = 200;
     payload.message = `Successfully fetched all materials`;
     payload.data = materials;
@@ -24,7 +33,12 @@ router.get("/", async (req, res) => {
 // get by id
 router.get("/:MaterialID", async (req, res) => {
   let status = 500;
-  const payload = { header: `Fetch Material By MaterialID`, message: ``, error: ``, data: null };
+  const payload = {
+    header: `Fetch Material By MaterialID`,
+    message: ``,
+    error: ``,
+    data: null,
+  };
   const materialId = req.params.MaterialID;
 
   try {
@@ -51,7 +65,12 @@ router.get("/:MaterialID", async (req, res) => {
 // create
 router.post("/", async (req, res) => {
   let status = 500;
-  const payload = { header: `Create New Material`, message: ``, error: ``, data: null };
+  const payload = {
+    header: `Create New Material`,
+    message: ``,
+    error: ``,
+    data: null,
+  };
 
   try {
     const lastMaterial = await Material.findOne({}, {}, { sort: { _id: -1 } });
@@ -78,11 +97,20 @@ router.post("/", async (req, res) => {
 // update
 router.put("/:MaterialID", async (req, res) => {
   let status = 500;
-  const payload = { header: `Update Material`, message: ``, error: ``, data: null };
+  const payload = {
+    header: `Update Material`,
+    message: ``,
+    error: ``,
+    data: null,
+  };
   const materialId = req.params.MaterialID;
 
   try {
-    const currMaterial = await Material.findByIdAndUpdate(materialId, req.body, { new: true });
+    const currMaterial = await Material.findByIdAndUpdate(
+      materialId,
+      req.body,
+      { new: true }
+    );
 
     if (!currMaterial) {
       status = 404;
@@ -105,7 +133,12 @@ router.put("/:MaterialID", async (req, res) => {
 // delete
 router.delete("/:MaterialID", async (req, res) => {
   let status = 500;
-  const payload = { header: `Delete Material`, message: ``, error: ``, data: null };
+  const payload = {
+    header: `Delete Material`,
+    message: ``,
+    error: ``,
+    data: null,
+  };
   const materialId = req.params.MaterialID;
 
   try {
