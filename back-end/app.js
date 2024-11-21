@@ -13,6 +13,7 @@ var courseRouter = require('./routes/courses');
 var taskRouter = require('./routes/tasks');
 var sessionlearningsRouter = require('./routes/sessionlearnings');
 var courselearningsRouter = require('./routes/courselearnings');
+var usercoursesRouter = require('./routes/usercourses');
 var forumRouter = require('./routes/forum');
 var sessionsRouter = require('./routes/sessions');
 
@@ -35,15 +36,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
 app.use('/api/books', booksRouter);
-app.use('/api/materials', materialRouter);
-app.use('/api/courses', courseRouter);
-app.use('/api/tasks', taskRouter);
-app.use('/api/courselearnings', courselearningsRouter);
-app.use('/api/courselearnings', sessionlearningsRouter);
-app.use('/api/forums', forumRouter);
-// app.use('/api/courselearnings/:courselearningID/sessions', sessionsRouter);
+app.use('/api/usercourses', usercoursesRouter);
+app.use('/api/usercourses/:UserCourseID/courselearnings', courselearningsRouter);
+app.use('/api/usercourses/:UserCourseID/courselearnings/:CourseLearningID/courses', courseRouter);
+app.use('/api/usercourses/:UserCourseID/courselearnings/:CourseLearningID/sessionlearnings', sessionlearningsRouter);
+app.use('/api/usercourses/:UserCourseID/courselearnings/:CourseLearningID/sessionlearnings/:SessionLearningID/materials', materialRouter);
+app.use('/api/usercourses/:UserCourseID/courselearnings/:CourseLearningID/sessionlearnings/:SessionLearningID/tasks', taskRouter);
+app.use('/api/usercourses/:UserCourseID/courselearnings/:CourseLearningID/sessionlearnings/:SessionLearningID/forums', forumRouter);
+app.use('/api/usercourses/:UserCourseID/courselearnings/:CourseLearningID/sessionlearnings/:SessionLearningID/sessions', sessionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

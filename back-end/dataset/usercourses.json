@@ -1,0 +1,56 @@
+[
+    {
+        "_id": 1,
+        "UserID": 1,
+        "CourseLearningID": 1,
+        "RoleID" : 2
+    },
+    {
+        "_id": 2,
+        "UserID": 2,
+        "CourseLearningID": 1,
+        "RoleID" : 1
+    },
+    {
+        "_id": 3,
+        "UserID": 3,
+        "CourseLearningID": 1,
+        "RoleID" : 1
+    },
+    {
+        "_id": 4,
+        "UserID": 4,
+        "CourseLearningID": 1,
+        "RoleID" : 1
+    },
+    {
+        "_id": 5,
+        "UserID": 1,
+        "CourseLearningID": 2,
+        "RoleID" : 1
+    },
+    {
+        "_id": 6,
+        "UserID": 2,
+        "CourseLearningID": 2,
+        "RoleID" : 2
+    },
+    {
+        "_id": 7,
+        "UserID": 3,
+        "CourseLearningID": 2,
+        "RoleID" : 1
+    },
+    {
+        "_id": 8,
+        "UserID": 3,
+        "CourseLearningID": 3,
+        "RoleID" : 2
+    },
+    {
+        "_id": 9,
+        "UserID": 4,
+        "CourseLearningID": 3,
+        "RoleID" : 1
+    }
+]

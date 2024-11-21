@@ -2,11 +2,11 @@ const { default: mongoose } = require("mongoose");
 
 
 const taskScheme = new mongoose.Schema({
-    '_id': Number,
-    'TaskName': String,
-    'TaskDesc': String,
-    'TaskType': String,
-    'TaskDueDate': Date,
+    _id: Number,
+    TaskName: String,
+    TaskDesc: String,
+    TaskType: String,
+    TaskDueDate: Date,
 
 },{
     collections: 'tasks'
