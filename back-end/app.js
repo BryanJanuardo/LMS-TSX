@@ -1,3 +1,4 @@
+require('dotenv').config({ path: './.env' });
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -48,6 +49,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+
 app.use("/api/usercourses/:UserCourseID", validateUserCourseID);
 app.use(
   "/api/usercourses/:UserCourseID/courselearnings/:CourseLearningID",
@@ -59,6 +61,7 @@ app.use(
   validateSessionLearningID,
   validateRelationSessionLearning
 );
+
 
 app.use("/api/users", usersRouter);
 app.use("/api/books", booksRouter);
