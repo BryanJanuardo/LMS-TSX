@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import ISessionLearning from "../interfaces/sessionlearning";
 import SessionContent from '../components/SessionContent';
 import { IconButton } from '@mui/material';
