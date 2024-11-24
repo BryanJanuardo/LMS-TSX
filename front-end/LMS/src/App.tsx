@@ -8,16 +8,21 @@ import FormSession from './pages/FormSession'
 import FormSessionLearning from './pages/FormSessionLearning'
 import FormCourseLearning from './pages/FormCourseLearning'
 import FormCreateSessionLearning from './components/FormCreateSessionLearning'
+import Signin from "./pages/Signin.tsx";
+import Signup from "./pages/Signup.tsx";
 function App() {
   return (
     <>
 
       {/* pake use context buat session authentication */}
       {/* pake use call back buat nrimo API */}
-      <Navbar />
+
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path='/' element={<Dashboard />} />
+          <Route path='/signin' element={<Signin />} />
+          <Route path='/signup' element={<Signup />} />
           <Route path='/courses' element={<ListCourses />} />
           <Route path='/courses/create' element={<FormCourse />} />
           <Route path='/courselearnings/:courselearningID' element={<CourseSessions />} />

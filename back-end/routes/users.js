@@ -21,7 +21,7 @@ router.post('/signin', async (req, res, next) => {
 
     const newToken = createToken(newUser._id);
 
-    res.status(201).json({newUser, newToken});
+    res.status(200).json({newUser, newToken});
   } catch (error){
     res.status(400).json({ error: error.message });
   }
@@ -37,7 +37,7 @@ router.post('/signup', async (req, res, next) => {
 
     res.status(201).json({newUser, newToken});
   } catch (error){
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: error.message});
   }
 });
 
