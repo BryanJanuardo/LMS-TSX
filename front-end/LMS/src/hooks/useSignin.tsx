@@ -4,8 +4,8 @@ import {useAuthContext} from "./useAuthContext.ts";
 
 export const useSignin = () => {
     const [error, setError] = useState<Error | null>(null);
-    const [isloading, setIsLoading] = useState<boolean>(false);
-    const { dispatch } = useAuthContext()
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const { dispatch } = useAuthContext();
     const signin = async (email:string, password: string) => {
         setIsLoading(true);
         setError(null);
@@ -14,19 +14,14 @@ export const useSignin = () => {
 
         if (response.status === 200) {
             localStorage.setItem("user", JSON.stringify(response.data));
-            dispatch({type: 'LOGIN', payload: {
-                    header: `User Login`,
-                    message: `Login Successfully`,
-                    error: ``,
-                    data: null,
-                }});
+            dispatch({ type: 'LOGIN', payload: { header: `User Login`, message: `Login Successfully`, error: ``, data: null } });
             setIsLoading(false);
-
-        }
-        else if (response.status === 400) {
-            setError(response.data.error)
+            return { success: true };
+        } else if (response.status === 400) {
+            setError(response.data.error);
             setIsLoading(false);
+            return { success: false, error: response.data.error };
         }
     }
-    return { signin, isloading, error }
+    return { signin, isLoading, error }
 }

@@ -4,16 +4,21 @@ import {useSignup} from "../hooks/useSignup.tsx";
 export const Signup = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { signup, isloading, error } = useSignup()
+    const [errorMessage, setErrorMessage] = useState('');
+    const { signup, isLoading, error } = useSignup();
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        await signup(email, password);
-        setEmail('');
-        setPassword('');
-        if (error != null) {
-            window.location.reload();
-        }
+        e.preventDefault();
 
+        setErrorMessage(null); // Reset pesan error
+
+        const result = await signup(email, password);
+        if (result.success) {
+            setEmail('');
+            setPassword('');
+            window.location.reload();
+        } else {
+            setErrorMessage(result.error || "Login failed. Please try again.");
+        }
     }
 
     return (
@@ -53,7 +58,7 @@ export const Signup = () => {
                 </label>
             </div>
 
-            <button disabled={isloading} className='border-2 px-4 py-1 rounded-md hover:scale-110 transition-all border-violet-700'>Sign Up</button>
+            <button disabled={isLoading} className='border-2 px-4 py-1 rounded-md hover:scale-110 transition-all border-violet-700'>Sign Up</button>
             {error && <div className='text-red-900'>{error}</div>}
         </form>
     )

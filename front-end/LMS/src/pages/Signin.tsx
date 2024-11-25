@@ -1,18 +1,24 @@
 import {useState} from 'react'
 import { useSignin } from "../hooks/useSignin.tsx";
-import {useNavigate} from "react-router-dom";
+
 
 export const Signin = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('');
     const { signin , isLoading, error} = useSignin()
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        await signin(email, password);
-        setEmail('');
-        setPassword('');
-        if (error != null) {
+        e.preventDefault();
+
+        setErrorMessage(null); // Reset pesan error
+
+        const result = await signin(email, password);
+        if (result.success) {
+            setEmail('');
+            setPassword('');
             window.location.reload();
+        } else {
+            setErrorMessage(result.error || "Login failed. Please try again.");
         }
     }
 
@@ -54,7 +60,7 @@ export const Signin = () => {
             </div>
 
             <button disabled={isLoading} className='border-2 px-4 py-1 rounded-md hover:scale-110 transition-all border-violet-700'>{isLoading ? 'Loading...' : 'Sign In'}</button>
-            {error && <div className='error'>{error}</div>}
+            {errorMessage && <div className='error'>{errorMessage}</div>}
         </form>
     )
 }

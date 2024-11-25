@@ -22,7 +22,6 @@ export const userSignIn = async (email: string, password:string) => {
         })
         return res;
     }catch (e) {
-        console.log(e.response)
         return e.response;
     }
 }
